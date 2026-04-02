@@ -142,7 +142,7 @@ def save_model_info(run_id: str, model_path: str, file_path: str) -> None:
 
 def main():
     mlflow.set_experiment("DVC-ML-pipeline")
-    with mlflow.start_run() as run:  # Start an MLflow run
+    with mlflow.start_run(description='Linear regression model trained on selected features') as run:  # Start an MLflow run
         try:
             # Load model
             model = load_model('./models/model.pkl')
@@ -150,6 +150,14 @@ def main():
             # Load train and test data
             train_data = load_data('./data/processed/train_data.csv')
             test_data = load_data('./data/processed/test_data.csv')
+
+            # Log train data
+            training_dataset = mlflow.data.from_pandas(
+                train_data,
+                targets="revenue_index",
+                name="train_dataset"
+            )
+            mlflow.log_input(training_dataset, context="training")
 
             # Evaluate model
             metrics = evaluate_model(model, train_data, test_data)
