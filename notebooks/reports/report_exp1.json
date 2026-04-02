@@ -1,0 +1,14 @@
+{
+    "Intercept": 199.86542254412802,
+    "days_in_period coefficient": -0.581759981031127,
+    "sum_total_spend_index coefficient": -0.009122176986546743,
+    "sum_gross_orders_index coefficient": 0.0052330770199813595,
+    "sum_spend_per_user coefficient": 6.501574493944666,
+    "sum_orders_per_user coefficient": -1.2925372438502567,
+    "sum_est_orders_from_order_per_day coefficient": -4.147130712482746e-05,
+    "sum_est_orders_from_order_per_day_capped coefficient": 2.2635709714945883e-05,
+    "avg_weekly_active_users_index coefficient": 0.20377743826186356,
+    "avg_aov_index coefficient": -247.07523562197957,
+    "avg_est_orders_per_day coefficient": 0.0022110062269736865,
+    "avg_est_orders_per_day_capped coefficient": -0.0006131692703849638
+}
