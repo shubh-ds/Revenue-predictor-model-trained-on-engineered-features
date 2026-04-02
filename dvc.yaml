@@ -1,0 +1,49 @@
+stages:
+  data_ingestion:
+    cmd: python src/data/data_ingestion.py
+    deps:
+    - data/raw/data_task.xlsx
+    - src/data/data_ingestion.py
+    outs:
+    - data/raw/order_numbers.csv
+    - data/raw/transaction_data.csv
+    - data/raw/reported_data.csv
+
+  data_preprocessing:
+    cmd: python src/data/data_preprocessing.py
+    deps:
+    - data/raw
+    - src/data/data_preprocessing.py
+    outs:
+    - data/interim/order_daily.csv
+    - data/interim/order_daily_win.csv
+
+  feature_engineering:
+    cmd: python src/features/feature_engineering.py
+    deps:
+    - data/raw
+    - data/interim
+    - src/features/feature_engineering.py
+    outs:
+    - data/processed/engineered_data.csv
+
+  model_building:
+    cmd: python src/models/model_building.py
+    deps:
+    - data/processed/engineered_data.csv
+    - src/models/model_building.py
+    outs:
+    - data/processed/train_data.csv
+    - data/processed/test_data.csv
+    - models/model.pkl
+
+  model_evaluation:
+    cmd: python src/models/model_evaluation.py
+    deps:
+    - data/processed
+    - models/model.pkl
+    - src/models/model_evaluation.py
+    metrics:
+    - reports/metrics.json
+    outs:
+    - reports/experiment_info.json
