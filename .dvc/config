@@ -1,0 +1,4 @@
+[core]
+    remote = myremotelocal
+['remote "myremotelocal"']
+    url = C:\Users\shubh\AppData\Local\Temp
