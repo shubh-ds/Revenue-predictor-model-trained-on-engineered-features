@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-dvc = "*"
 dagshub = "*"
 numpy = "*"
 pandas = "*"
@@ -13,6 +12,8 @@ learn = "*"
 mlflow = "*"
 seaborn = "*"
 openpyxl = "*"
+dvc = {extras = ["s3"], version = "*"}
+awscli = "*"
 
 [dev-packages]
 ipykernel = "*"

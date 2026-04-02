@@ -128,10 +128,10 @@ def save_metrics(metrics: dict, file_path: str) -> None:
         raise
 
 
-def save_model_info(run_id: str, model_path: str, file_path: str) -> None:
+def save_model_info(run_id: str, model_uri, model_path: str, file_path: str) -> None:
     """Save the model run ID and path to a JSON file."""
     try:
-        model_info = {'run_id': run_id, 'model_path': model_path}
+        model_info = {'run_id': run_id, 'model_uri': model_uri, 'model_path': model_path}
         with open(file_path, 'w') as file:
             json.dump(model_info, file, indent=4)
         logger.debug('Model info saved to %s', file_path)
@@ -170,10 +170,10 @@ def main():
                 mlflow.log_metric(metric_name, metric_value)
 
             # Log model to MLflow
-            mlflow.sklearn.log_model(model, "model")
+            result = mlflow.sklearn.log_model(model, "model")
 
-            # Save model info
-            save_model_info(run.info.run_id, "model", './reports/experiment_info.json')
+            # Save model info locally
+            save_model_info(run.info.run_id, result.model_uri, "model", './reports/experiment_info.json')
 
             # Log the metrics file to MLflow
             mlflow.log_artifact('./reports/metrics.json')

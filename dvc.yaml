@@ -47,3 +47,9 @@ stages:
     - reports/metrics.json
     outs:
     - reports/experiment_info.json
+
+  model_registration:
+    cmd: python src/models/register_model.py
+    deps:
+    - reports/experiment_info.json
+    - src/models/register_model.py
