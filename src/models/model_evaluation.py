@@ -142,7 +142,7 @@ def save_model_info(run_id: str, model_path: str, file_path: str) -> None:
 
 def main():
     mlflow.set_experiment("DVC-ML-pipeline")
-    with mlflow.start_run(description="Linear regression model trained on 'sum_spend_per_user', 'avg_weekly_active_users_index', 'avg_aov_index' features") as run:  # Start an MLflow run
+    with mlflow.start_run(description="Linear regression model trained on 'sum_spend_per_user', 'avg_weekly_active_users_index'") as run:  # Start an MLflow run
         try:
             # Load model
             model = load_model('./models/model.pkl')
