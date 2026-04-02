@@ -14,6 +14,7 @@ seaborn = "*"
 openpyxl = "*"
 dvc = {extras = ["s3"], version = "*"}
 awscli = "*"
+flask = "*"
 
 [dev-packages]
 ipykernel = "*"

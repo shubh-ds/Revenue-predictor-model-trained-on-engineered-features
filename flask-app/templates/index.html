@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Revenue Predictor</title>
+</head>
+<body>
+    <h1>Revenue Predictor</h1>
+
+    <form action="/predict" method="POST">
+        <label for="sum_spend_per_user">Sum spend per user:</label><br>
+        <input type="number" step="any" id="sum_spend_per_user" name="sum_spend_per_user" required><br><br>
+
+        <label for="avg_weekly_active_users_index">Avg weekly active users index:</label><br>
+        <input type="number" step="any" id="avg_weekly_active_users_index" name="avg_weekly_active_users_index" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if result is not none %}
+        <h3>Predicted revenue is: {{result}}</h3>
+    {% endif %}
+
+</body>
+</html>
