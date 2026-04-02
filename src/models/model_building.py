@@ -104,7 +104,7 @@ def main():
         engineered_data = load_data('./data/processed/engineered_data.csv')
 
         # Selected features for training: from experiment 2 in notebooks
-        selected_features = ['sum_spend_per_user', 'avg_weekly_active_users_index']
+        selected_features = ['sum_spend_per_user', 'avg_weekly_active_users_index', 'avg_aov_index']
 
         # Train LR model
         trained_model = train_LR_model(engineered_data, selected_features, target='revenue_index')
