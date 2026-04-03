@@ -51,7 +51,7 @@ def promote_model():
         current_prod_version = current_prod_model.version
 
         # Update alias to previous production
-        client.set_registered_model_alias(model_name, "previous production", current_prod_version)
+        client.set_registered_model_alias(model_name, "previous_production", current_prod_version)
     except Exception:
         current_prod_version = None
 
