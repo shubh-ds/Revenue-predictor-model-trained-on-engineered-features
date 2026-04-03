@@ -140,7 +140,7 @@ def main():
         # Save engineered data
         try:
             os.makedirs(os.path.dirname(os.path.join("./data", "processed")), exist_ok=True)
-            engineered_data.to_csv(r'./data/processed/engineered_data.csv', index=False)
+            engineered_data.to_csv('./data/processed/engineered_data.csv', index=False)
             
         except Exception as e:
             logger.error('Some error happened while saving engineered data file: %s', e)

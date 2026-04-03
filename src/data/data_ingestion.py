@@ -53,7 +53,7 @@ def save_data(data: pd.DataFrame, name: str, data_path: str) -> None:
 
 def main():
     try:
-        path = r'data\raw\data_task.xlsx'
+        path = 'data/raw/data_task.xlsx'
         order_numbers_df = load_data(path, 'order_numbers')
         transaction_data_df = load_data(path, 'transaction_data')
         reported_data_df = load_data(path, 'reported_data')

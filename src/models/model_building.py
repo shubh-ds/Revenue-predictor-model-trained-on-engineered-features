@@ -78,8 +78,8 @@ def train_LR_model(engineered_data, selected_features, target) -> LinearRegressi
     # Save train and test data
     try:
         os.makedirs(os.path.dirname(os.path.join("./data", "processed")), exist_ok=True)
-        train.to_csv(r'./data/processed/train_data.csv', index=False)
-        test.to_csv(r'./data/processed/test_data.csv', index=False)
+        train.to_csv('./data/processed/train_data.csv', index=False)
+        test.to_csv('./data/processed/test_data.csv', index=False)
             
     except Exception as e:
         logger.error('Some error happened while saving train and test data locally: %s', e)

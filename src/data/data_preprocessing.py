@@ -174,14 +174,14 @@ def remove_bad_points(df: pd.DataFrame) -> pd.DataFrame:
 def main():
     try:
         # Load individual files
-        order_numbers = load_data('order_numbers', r'data\raw\order_numbers.csv')
+        order_numbers = load_data('order_numbers', 'data/raw/order_numbers.csv')
         order_numbers['date'] = pd.to_datetime(order_numbers['date'])
 
-        reported_data = load_data('reported_data', r'data\raw\reported_data.csv')
+        reported_data = load_data('reported_data', 'data/raw/reported_data.csv')
         reported_data['start_date'] = pd.to_datetime(reported_data['start_date'])
         reported_data['end_date'] = pd.to_datetime(reported_data['end_date'])
 
-        transaction_data = load_data('transaction_data', r'data\raw\transaction_data.csv')
+        transaction_data = load_data('transaction_data', 'data/raw/transaction_data.csv')
         transaction_data['date'] = pd.to_datetime(transaction_data['date'])
 
         # Basic data assessment
@@ -201,8 +201,8 @@ def main():
         # Save order_daily, order_daily_win to interim data
         try:
             os.makedirs(os.path.dirname(os.path.join("./data", "interim")), exist_ok=True)
-            order_daily.to_csv(r'./data/interim/order_daily.csv', index=False)
-            order_daily_win.to_csv(r'./data/interim/order_daily_win.csv', index=False)
+            order_daily.to_csv('./data/interim/order_daily.csv', index=False)
+            order_daily_win.to_csv('./data/interim/order_daily_win.csv', index=False)
         except Exception as e:
             logger.error('Some error happened while saving interim files: %s', e)
             
