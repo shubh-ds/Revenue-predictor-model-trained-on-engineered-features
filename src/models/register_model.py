@@ -65,7 +65,15 @@ def register_model(model_name: str, model_info: dict):
         
         client = mlflow.tracking.MlflowClient()
 
-        # Alias the model to "challenger" stage
+        # Store the source model URI as a model-version tag
+        client.set_model_version_tag(
+            name=model_name,
+            version=model_version.version,
+            key="source_model_uri",
+            value=model_uri,
+        )
+
+        # Alias the model to "staging"
         client.set_registered_model_alias(
             name=model_name,
             alias="staging",

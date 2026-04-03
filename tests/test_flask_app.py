@@ -13,12 +13,11 @@ class FlaskAppTests(unittest.TestCase):
         self.assertIn(b'<title>Revenue Predictor</title>', response.data)
 
     def test_predict_page(self):
-        response = self.client.post('/predict', data=[[133.08, 212.96]])
+        response = self.client.post('/predict', data={
+                                                        'sum_spend_per_user': '133.08',
+                                                        'avg_weekly_active_users_index': '212.96'
+                                                    })
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(
-            isinstance(response.data, str),
-            "Response should be a string"
-        )
 
 if __name__ == '__main__':
     unittest.main()

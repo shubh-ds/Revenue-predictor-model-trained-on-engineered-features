@@ -186,7 +186,7 @@ def main():
             # Log model to MLflow
             result = mlflow.sklearn.log_model(model, name="model")
 
-            # Save model info locally
+            # Save experiment/model info locally
             save_model_info(run.info.run_id, result.model_uri, "model", './reports/experiment_info.json')
 
             # Log the metrics file to MLflow
