@@ -1,0 +1,29 @@
+name: CI/CD pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  continuous_integration:
+    name: Continuous Integration
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip pipenv
+          pipenv install
+
+      - name: Run DVC pipeline
+        run: |
+          pipenv run dvc repro
