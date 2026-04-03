@@ -30,17 +30,20 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-        run: |
-          pipenv run dvc pull
+        run: pipenv run dvc pull
 
       - name: Run DVC pipeline
         env:
           DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
-        run: |
-          pipenv run dvc repro
+        run: pipenv run dvc repro
 
       - name: Run model tests
         env:
           DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
-        run: |
-          pipenv run python -m unittest tests/test_model.py
+        run: pipenv run python -m unittest tests/test_model.py
+
+      - name: Promote model to production
+        if: success()
+        env:
+          DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
+        run: pipenv run python scripts/promote_model.py

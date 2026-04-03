@@ -3,8 +3,25 @@ import unittest
 import mlflow
 import os
 import pandas as pd
-
+import logging
 from sklearn.metrics import r2_score
+
+# Logging configuration
+logger = logging.getLogger('model_promotion')
+logger.setLevel('DEBUG')
+
+# Set console logger
+console_handler = logging.StreamHandler()
+console_handler.setLevel('DEBUG')
+
+# Set format for logging
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+
+# Add handlers to loggers
+logger.addHandler(console_handler)
+print()
+logger.debug('------------------------------------------ MODEL TESTING STARTED -----------------------------------------------------')
 
 class TestModelLoading(unittest.TestCase):
 

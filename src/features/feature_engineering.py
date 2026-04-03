@@ -26,7 +26,7 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 print()
-logger.debug('----------------- STARTING FEATURE ENGINEERING -------------------------')
+logger.debug('--------------------------------------------- FEATURE ENGINEERING STARTED -------------------------------------------------')
 
 def load_data(path: str) -> pd.DataFrame:
     '''Loads a file from a given path'''

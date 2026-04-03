@@ -27,7 +27,7 @@ logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
 print()
-logger.debug('------- STARTING DATA INGESTION -------')
+logger.debug('------------------------------------------- DATA INGESTION STARTED -------------------------------------------------------')
 
 # Load data
 def load_data(path: str, sheetname: str) -> pd.DataFrame:

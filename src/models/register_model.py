@@ -39,7 +39,7 @@ logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
 
-logger.debug('----------------- START MODEL REGISTRATION -------------------------')
+logger.debug('--------------------------------------------  MODEL REGISTRATION STARTED -------------------------------------------------')
 
 def load_model_info(file_path: str) -> dict:
     """Load the model info from a JSON file."""
