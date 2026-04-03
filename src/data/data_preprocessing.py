@@ -26,7 +26,7 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 print()
-logger.debug('------------------------------------------------ DATA PREPROCESSING STARTED ------------------------------------------------')
+logger.debug('------------------------------------------- DATA PREPROCESSING STARTED -------------------------------------------------------')
 
 
 def basic_assess_data(name: str, df: pd.DataFrame) -> None:

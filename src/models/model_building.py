@@ -31,7 +31,7 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 print()
-logger.debug('------------------------------------------------- MODEL BUILDING STARTED ------------------------------------------------')
+logger.debug('------------------------------------------- MODEL BUILDING STARTED -------------------------------------------------------')
 
 def load_data(path: str) -> pd.DataFrame:
     '''Loads a file from a given path'''

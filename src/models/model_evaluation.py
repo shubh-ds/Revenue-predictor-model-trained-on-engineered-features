@@ -50,7 +50,7 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 print()
-logger.debug('------------------------------------------- MODEL EVALUATION STARTED --------------------------------------------------')
+logger.debug('------------------------------------------- MODEL EVALUATION STARTED -------------------------------------------------------')
 
 
 def load_model(path: str) -> LinearRegression:

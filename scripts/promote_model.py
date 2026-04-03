@@ -18,7 +18,7 @@ console_handler.setFormatter(formatter)
 # Add handlers to loggers
 logger.addHandler(console_handler)
 print()
-logger.debug('------------------------------------------ MODEL PROMOTION STARTED -----------------------------------------------------')
+logger.debug('------------------------------------------- MODEL PROMOTION STARTED -------------------------------------------------------')
 
 def promote_model():
     # Set up DagsHub credentials for MLflow tracking
@@ -57,6 +57,9 @@ def promote_model():
 
     # Promote current staging model to production
     client.set_registered_model_alias(model_name, "Production", staging_version)
+
+    # Remove staging alias after promotion
+    client.delete_registered_model_alias(model_name, "Staging")
 
     print(
         f"***************** Model version {staging_version} promoted to production *************************"
