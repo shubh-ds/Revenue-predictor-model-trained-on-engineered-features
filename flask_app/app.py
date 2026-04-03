@@ -55,4 +55,5 @@ def predict():
     result = round((model.predict([[float(sum_spend_per_user), float(avg_weekly_active_users_index)]])[0]), 3)
     return render_template('index.html', result = str(result))
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
