@@ -18,7 +18,7 @@ console_handler.setFormatter(formatter)
 # Add handlers to loggers
 logger.addHandler(console_handler)
 print()
-logger.debug('------------------------------------------- MODEL PROMOTION STARTED -------------------------------------------------------')
+logger.debug('---------------------------------------- MODEL PROMOTION TO PRODUCTION STARTED ------------------------------------------')
 
 def promote_model():
     # DagsHub credentials
