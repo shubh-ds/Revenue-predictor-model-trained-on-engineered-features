@@ -77,8 +77,7 @@ class TestModelLoading(unittest.TestCase):
 
         # Define expected thresholds for the performance metrics
         expected_r2 = 0.90
-        maximum_test_ape_pct = 20
-
+        maximum_test_ape_pct = 2
 
         # Assert that the new model meets the performance thresholds
         self.assertGreaterEqual(train_r2, expected_r2, f'In-sample R2 score should be at least {expected_r2}')
