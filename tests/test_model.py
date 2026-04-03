@@ -76,7 +76,7 @@ class TestModelLoading(unittest.TestCase):
         test_ape_pct = 100 * abs(test_pred - test_target) / test_target
 
         # Define expected thresholds for the performance metrics
-        expected_r2 = 0.90
+        expected_r2 = 0.99
         maximum_test_ape_pct = 20
 
         # Assert that the new model meets the performance thresholds
