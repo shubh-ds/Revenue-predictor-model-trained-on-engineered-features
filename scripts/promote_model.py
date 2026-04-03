@@ -21,7 +21,7 @@ print()
 logger.debug('------------------------------------------- MODEL PROMOTION STARTED -------------------------------------------------------')
 
 def promote_model():
-    # Set up DagsHub credentials for MLflow tracking
+    # DagsHub credentials
     dagshub_token = os.getenv("DAGSHUB_PAT")
     if not dagshub_token:
         raise EnvironmentError("DAGSHUB_PAT environment variable is not set")
