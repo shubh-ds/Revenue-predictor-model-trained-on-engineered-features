@@ -141,8 +141,13 @@ def save_model_info(run_id: str, model_uri, model_path: str, file_path: str) -> 
 
 
 def main():
+    # Load train data and get features model is trained on
+    train_data = load_data('./data/processed/train_data.csv')
+    features = train_data.iloc[:, :-1].columns
+    features_string = ', '.join(features)
+
     mlflow.set_experiment("DVC-ML-pipeline")
-    with mlflow.start_run(description="Linear regression model trained on 'sum_spend_per_user', 'avg_weekly_active_users_index'") as run:  # Start an MLflow run
+    with mlflow.start_run(description=f"Linear regression model trained on {features_string}") as run:  # Start an MLflow run
         try:
             # Load model
             model = load_model('./models/model.pkl')
@@ -170,7 +175,7 @@ def main():
                 mlflow.log_metric(metric_name, metric_value)
 
             # Log model to MLflow
-            result = mlflow.sklearn.log_model(model, "model")
+            result = mlflow.sklearn.log_model(model, name="model")
 
             # Save model info locally
             save_model_info(run.info.run_id, result.model_uri, "model", './reports/experiment_info.json')

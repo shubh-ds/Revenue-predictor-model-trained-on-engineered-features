@@ -1,4 +1,6 @@
 [core]
-    remote = myremotelocal
+    remote = myremotecloud
 ['remote "myremotelocal"']
     url = C:\Users\shubh\AppData\Local\Temp
+['remote "myremotecloud"']
+    url = s3://shubham-bucket-revenue-prediction
