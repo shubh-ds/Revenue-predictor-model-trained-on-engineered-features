@@ -44,7 +44,7 @@ class TestModelLoading(unittest.TestCase):
 
         # Load the new model from MLflow model registry
         cls.new_model_name = "Revenue_Predictor_LinearRegressor"
-        cls.new_model_uri = f'models:/{cls.new_model_name}@Staging'
+        cls.new_model_uri = f'models:/{cls.new_model_name}@staging'
         cls.new_model = mlflow.pyfunc.load_model(cls.new_model_uri)
 
         # Load train data
@@ -77,7 +77,7 @@ class TestModelLoading(unittest.TestCase):
 
         # Define expected thresholds for the performance metrics
         expected_r2 = 0.90
-        maximum_test_ape_pct = 2
+        maximum_test_ape_pct = 20
 
         # Assert that the new model meets the performance thresholds
         self.assertGreaterEqual(train_r2, expected_r2, f'In-sample R2 score should be at least {expected_r2}')

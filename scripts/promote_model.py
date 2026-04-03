@@ -42,24 +42,24 @@ def promote_model():
     model_name = "Revenue_Predictor_LinearRegressor"
 
     # Get staging model version
-    staging_model = client.get_model_version_by_alias(model_name, "Staging")
+    staging_model = client.get_model_version_by_alias(model_name, "staging")
     staging_version = staging_model.version
 
     try:
         # Get current production model's version if it exists
-        current_prod_model = client.get_model_version_by_alias(model_name, "Production")
+        current_prod_model = client.get_model_version_by_alias(model_name, "production")
         current_prod_version = current_prod_model.version
 
         # Update alias to previous production
-        client.set_registered_model_alias(model_name, "Previous Production", current_prod_version)
+        client.set_registered_model_alias(model_name, "previous production", current_prod_version)
     except Exception:
         current_prod_version = None
 
     # Promote current staging model to production
-    client.set_registered_model_alias(model_name, "Production", staging_version)
+    client.set_registered_model_alias(model_name, "production", staging_version)
 
     # Remove staging alias after promotion
-    client.delete_registered_model_alias(model_name, "Staging")
+    client.delete_registered_model_alias(model_name, "staging")
 
     print(
         f"***************** Model version {staging_version} promoted to production *************************"
