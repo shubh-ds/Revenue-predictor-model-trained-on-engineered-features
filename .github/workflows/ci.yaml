@@ -24,6 +24,10 @@ jobs:
           python -m pip install --upgrade pip pipenv
           pipenv install
 
+      - name: Pull DVC data
+        run: |
+          pipenv run dvc pull
+
       - name: Run DVC pipeline
         run: |
           pipenv run dvc repro
