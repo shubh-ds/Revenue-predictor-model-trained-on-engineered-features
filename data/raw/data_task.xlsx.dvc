@@ -1,0 +1,5 @@
+outs:
+- md5: 5bc8b21f538a412fb69d425d36ae6b47
+  size: 119929
+  hash: md5
+  path: data_task.xlsx
