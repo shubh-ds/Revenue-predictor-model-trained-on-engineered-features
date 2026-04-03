@@ -7,7 +7,7 @@ import logging
 from sklearn.metrics import r2_score
 
 # Logging configuration
-logger = logging.getLogger('model_promotion')
+logger = logging.getLogger('model_testing')
 logger.setLevel('DEBUG')
 
 # Set console logger

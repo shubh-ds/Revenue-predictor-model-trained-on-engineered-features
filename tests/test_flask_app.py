@@ -1,6 +1,24 @@
 # Import libraries
 import unittest
 from flask_app.app import app
+import logging
+
+# Logging configuration
+logger = logging.getLogger('flask_app_testing')
+logger.setLevel('DEBUG')
+
+# Set console logger
+console_handler = logging.StreamHandler()
+console_handler.setLevel('DEBUG')
+
+# Set format for logging
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+
+# Add handlers to loggers
+logger.addHandler(console_handler)
+print()
+logger.debug('------------------------------------------ FLASK APP TESTING STARTED -----------------------------------------------------')
 
 class FlaskAppTests(unittest.TestCase):
     @classmethod
