@@ -45,6 +45,8 @@ Code push → GitHub → CI/CD Pipeline → DVC Pipeline → MLflow Tracking →
 - AWS EC2  
 
 ## Application on Internet  
+<img width="573" height="347" alt="image" src="https://github.com/user-attachments/assets/74f20aee-c9cb-4684-8b84-c3cc605fb4c5" />
+
 
 
 
