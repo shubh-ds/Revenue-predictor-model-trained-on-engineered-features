@@ -95,7 +95,5 @@ jobs:
             aws configure set default.region us-east-1
             aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 339713007263.dkr.ecr.us-east-1.amazonaws.com
             docker pull 339713007263.dkr.ecr.us-east-1.amazonaws.com/revenue_predictor_ecr:latest
-            docker stop revenue_predictor || true
-            docker rm  revenue_predictor || true
             docker run -d -p 80:5000 -e DAGSHUB_PAT=${{ secrets.DAGSHUB_PAT }} --name revenue_predictor 339713007263.dkr.ecr.us-east-1.amazonaws.com/revenue_predictor_ecr:latest
 
