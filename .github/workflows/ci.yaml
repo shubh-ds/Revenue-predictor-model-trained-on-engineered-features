@@ -94,6 +94,9 @@ jobs:
             aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws configure set default.region us-east-1
+            docker stop revenue_predictor || true
+            docker rm  revenue_predictor || true
+            docker system prune -a -f
             aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 339713007263.dkr.ecr.us-east-1.amazonaws.com
             docker pull 339713007263.dkr.ecr.us-east-1.amazonaws.com/revenue_predictor_ecr:latest
             docker run -d -p 80:5000 -e DAGSHUB_PAT=${{ secrets.DAGSHUB_PAT }} --name revenue_predictor 339713007263.dkr.ecr.us-east-1.amazonaws.com/revenue_predictor_ecr:latest
