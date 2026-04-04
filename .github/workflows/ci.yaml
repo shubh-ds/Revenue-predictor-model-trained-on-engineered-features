@@ -46,7 +46,7 @@ jobs:
         if: success()
         env:
           DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
-        run: pipenv run python scripts/promote_model.py
+        run: pipenv run python scripts.promote_model
 
       -  name: Run Flask application tests
          if: success()
@@ -64,9 +64,9 @@ jobs:
       - name: Build Docker Image
         if: success()
         run: |
-          docker build -t ${{secrets.DOCKER_HUB_USERNAME}}/revenuepredictor:v1 .
+          docker build -t ${{secrets.DOCKER_HUB_USERNAME}}/revenuepredictor:latest .
 
       - name: Push Docker Image to Docker Hub
         if: success()
         run: |
-          docker push ${{secrets.DOCKER_HUB_USERNAME}}/revenuepredictor:v1
+          docker push ${{secrets.DOCKER_HUB_USERNAME}}/revenuepredictor:latest
