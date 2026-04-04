@@ -69,9 +69,33 @@ jobs:
       - name: Tag Docker image
         if: success()
         run: |
-          docker tag revenue_predictor_ecr:latest 339713007263.dkr.ecr.us-east-1.amazonaws.com/revenue_predictor_ecr:v1
+          docker tag revenue_predictor_ecr:latest 339713007263.dkr.ecr.us-east-1.amazonaws.com/revenue_predictor_ecr:latest
 
       - name: Push Docker image to AWS ECR
         if: success()
         run: |
-          docker push 339713007263.dkr.ecr.us-east-1.amazonaws.com/revenue_predictor_ecr:v1
+          docker push 339713007263.dkr.ecr.us-east-1.amazonaws.com/revenue_predictor_ecr:latest
+
+jobs:
+  continuous_deployment:
+    name: Continuous Deployment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to single EC2 instance
+        if: success()
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          scripts: |
+            aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws configure set default.region us-east-1
+            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 339713007263.dkr.ecr.us-east-1.amazonaws.com
+            docker pull 339713007263.dkr.ecr.us-east-1.amazonaws.com/revenue_predictor_ecr:latest
+            docker stop revenue_predictor || true
+            docker rm  revenue_predictor || true
+            docker run -d -p 80:5000 -e DAGSHUB_PAT=${{ secrets.DAGSHUB_PAT }} --name revenue_predictor 339713007263.dkr.ecr.us-east-1.amazonaws.com/revenue_predictor_ecr:latest
+
