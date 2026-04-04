@@ -40,7 +40,7 @@ jobs:
       - name: Run model tests
         env:
           DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
-        run: pipenv run python -m unittest tests/test_model.py
+        run: pipenv run python -m unittest tests.test_model
 
       - name: Promote model to production
         if: success()
@@ -52,7 +52,7 @@ jobs:
          if: success()
          env:
             DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
-         run: pipenv run python -m unittest tests/test_flask_app.py
+         run: pipenv run python -m unittest tests.test_flask_app
 
       - name: Login to Docker Hub
         if: success()
