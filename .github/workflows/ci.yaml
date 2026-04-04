@@ -64,7 +64,7 @@ jobs:
       - name: Build Docker Image
         if: success()
         run: |
-          docker build -t ${{secrets.DOCKER_HUB_USERNAME}}/revenuepredictor:latest .
+          docker build -t ${{secrets.DOCKER_HUB_USERNAME}}/revenuepredictor:v1 .
 
       - name: Push Docker Image to Docker Hub
         if: success()
