@@ -1,57 +1,47 @@
-Revenue_Predictor
+Revenue Predictor: Full Stack ML System with automated CI/CD and Deployment on AWS using Docker
 ==============================
 
-A project to predict revenue using an ML model trained on engineered features
+This project demonstrates how to build a scalable infrastructure around a machine learning model, taking it from experimentation phase to a production deployed application.
+**Live application:** http://ec2-3-239-56-232.compute-1.amazonaws.com/
+**Experiment tracking:** https://dagshub.com/shubhamyadav2442/Revenue-predictor-model-trained-on-engineered-features.mlflow/#/experiments
+**Model registry:** https://dagshub.com/shubhamyadav2442/Revenue-predictor-model-trained-on-engineered-features.mlflow/#/models
 
-Project Organization
-------------
+## Overview of project:
+The goal of this project is to predict quarterly revenue index using engineered features created from cleaned historical order-number and transaction data. Beyond model development, the focus is on building production ready ML system that supports:
+- Reproducability
+- Automated deployment
+- Continous improvement
+This project reflects how ML systems are actually designed and maintained in real-world environments.
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+## Key Highlights of the project:
+1- Code versioned using **Git and GitHub**. **Master branch always in deployable state.**
+2- Data versioned using **DVC and AWS S3.**
+3- Different experiments conducted to build the revenue predictor model with different strategies. Each experiment was tracked by **DAGSHUB and MLflow** for reproducability and collaboration among developers. Link to remote experiment tracking server:
+4- Best result giving experiment was selected to build **DVC pipeline**. Each run of DVC pipeline was also tracked on MLflow.
+5- Implemented **CI/CD pipeline using GitHub actions'** for single-click deployment and updates to application running on production when new code is pushed on master branch.
+    - Runs DVC pipeline pushing pushing the model to **model registry** in staging state for testing.
+    - Performs test on model to promote it to production state on model registry.
+    - Performs test on **flask application**.
+    - Dockerises the application and push the docker image to **AWS ECR.**
+    - Launches an **EC2** instance, pulls the latest docker image from ECR and runs the container.
+
+## Architecture:
+Code push → GitHub → CI/CD Pipeline → DVC Pipeline → MLflow Tracking → Model Registry → Docker Build → ECR → EC2 → Live Application
+
+## Tech stack:
+- Python
+- sci-kit learn
+- Flask
+- DVC
+- MLflow
+- DAGsHUB
+- Docker
+- GitHub Actions
+- AWS S3
+- AWS ECR
+- AWS EC2
+
+## Application on Internet
+<img width="575" height="347" alt="image" src="https://github.com/user-attachments/assets/ff8c44bc-5451-4bea-8680-5128eda85f98" />
 
 
---------
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
