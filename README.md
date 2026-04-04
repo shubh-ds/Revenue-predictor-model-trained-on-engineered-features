@@ -4,7 +4,9 @@ Revenue Predictor: Full Stack ML System with automated CI/CD and Deployment on A
 This project demonstrates how to build a scalable infrastructure around a machine learning model, taking it from experimentation phase to a production deployed application.  
 
 **Live application:** http://ec2-3-239-56-232.compute-1.amazonaws.com/  
+
 **Experiment tracking:** https://dagshub.com/shubhamyadav2442/Revenue-predictor-model-trained-on-engineered-features.mlflow/#/experiments  
+
 **Model registry:** https://dagshub.com/shubhamyadav2442/Revenue-predictor-model-trained-on-engineered-features.mlflow/#/models  
 
 ## Overview of project:  
@@ -43,6 +45,6 @@ Code push → GitHub → CI/CD Pipeline → DVC Pipeline → MLflow Tracking →
 - AWS EC2  
 
 ## Application on Internet  
-<img width="575" height="347" alt="image" src="https://github.com/user-attachments/assets/ff8c44bc-5451-4bea-8680-5128eda85f98" />
+
 
 
