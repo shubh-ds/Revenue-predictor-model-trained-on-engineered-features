@@ -1,5 +1,5 @@
-# Stage 1: Base Stage
-FROM python:3.12 AS build
+# Base image
+FROM python:3.12-slim
 
 # Work directory
 WORKDIR /app
@@ -8,16 +8,7 @@ WORKDIR /app
 COPY flask_app/ /app/
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Stage 2:  Run Stage
-FROM python:3.12 AS run
-
-# Work directory
-WORKDIR /app
-
-# Copy only the necessary files from the build stage
-COPY --from=build /app /app
+RUN pip install -r requirements.txt
 
 # Expose port
 EXPOSE 5000
